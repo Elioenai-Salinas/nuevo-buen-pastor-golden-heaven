@@ -144,11 +144,6 @@ export default function Admisiones() {
     () => isValidAppsScriptUrl(ADMISSIONS_FORM_ENDPOINT),
     [ADMISSIONS_FORM_ENDPOINT]
   );
-  const endpointStatus = endpointOk
-    ? 'ACTIVO'
-    : ADMISSIONS_FORM_ENDPOINT
-      ? 'INVÁLIDO'
-      : 'NO CONFIGURADO';
 
   async function submitToAppsScript(payload: Record<string, string>) {
     if (!ADMISSIONS_FORM_ENDPOINT) throw new Error('Missing endpoint');
@@ -219,14 +214,6 @@ export default function Admisiones() {
                 </a>
               </Button>
             </div>
-
-            {/* Indicador para confirmar .env */}
-            <p className="mt-4 text-sm text-muted-foreground">
-              Envío directo (Apps Script):{' '}
-              <span className="font-semibold text-foreground">
-                {endpointStatus}
-              </span>
-            </p>
           </motion.div>
         </div>
       </section>
@@ -283,7 +270,11 @@ export default function Admisiones() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <SectionHeader badge="Documentos" title="Requisitos para la matrícula" centered={false} />
+            <SectionHeader
+              badge="Documentos"
+              title="Requisitos para la matrícula"
+              centered={false}
+            />
 
             <ul className="space-y-3">
               {requirements.map((req, index) => (
@@ -301,8 +292,16 @@ export default function Admisiones() {
               ))}
             </ul>
 
-            <Button variant="outline" className="mt-6 font-semibold text-base" asChild>
-              <a href={DOCUMENTS_FOLDER_URL} target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="outline"
+              className="mt-6 font-semibold text-base"
+              asChild
+            >
+              <a
+                href={DOCUMENTS_FOLDER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FileText className="h-4 w-4 mr-2" />
                 Enlace a documentos
               </a>
@@ -315,7 +314,7 @@ export default function Admisiones() {
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <SectionHeader badge="Inversión" title="Costos de matrícula" centered={false} />
@@ -419,20 +418,19 @@ export default function Admisiones() {
 
                   if (!endpointOk || !ADMISSIONS_FORM_ENDPOINT) {
                     setSendError(
-                      'El envío directo no está configurado. Revisa VITE_CONTACT_FORM_ENDPOINT en .env y reinicia npm run dev.'
+                      'No se pudo enviar en este momento. Intenta nuevamente o contáctanos por WhatsApp.'
                     );
                     return;
                   }
 
-                  // ✅ FIX: enviar también "name" para que el Apps Script lo tome como nombre (como en Contacto)
                   await submitToAppsScript({
-                    name: parentName, // <-- CLAVE
+                    name: parentName,
                     parentName,
                     phone,
                     email,
                     studentName,
                     grade: gradeHuman,
-                    subject: `Solicitud de admisiones — ${gradeHuman}`, // recomendado
+                    subject: `Solicitud de admisiones — ${gradeHuman}`,
                     message: message?.trim() || '',
                     page: '/admisiones',
                     source: 'web-admisiones',
@@ -576,17 +574,6 @@ export default function Admisiones() {
                 </a>
               </Button>
             </div>
-
-            {endpointOk ? (
-              <p className="text-xs text-muted-foreground mt-3">
-                Envío directo activado: esta solicitud llega al correo.
-              </p>
-            ) : (
-              <p className="text-xs text-muted-foreground mt-3">
-                Envío directo no configurado. Revisa{' '}
-                <code>VITE_CONTACT_FORM_ENDPOINT</code> en <code>.env</code>.
-              </p>
-            )}
           </div>
         </div>
       </Section>
