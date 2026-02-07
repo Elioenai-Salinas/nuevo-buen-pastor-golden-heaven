@@ -261,7 +261,7 @@ export default function Nosotros() {
             </div>
             <h3 className="font-heading font-bold text-xl mb-2">Comunidad</h3>
             <p className="text-muted-foreground">
-              Más de 500 familias forman parte de nuestra comunidad educativa.
+              Muchas familias forman parte de nuestra comunidad educativa.
             </p>
           </motion.div>
 
