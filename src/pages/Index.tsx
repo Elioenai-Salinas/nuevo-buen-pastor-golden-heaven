@@ -9,6 +9,7 @@ import { FeatureCard, ProgramCard, TestimonialCard } from '@/components/shared/C
 import { Heart, BookOpen, Users, Shield, Award, GraduationCap, Calendar, Phone, Star } from 'lucide-react';
 
 import heroImage from '@/assets/hero-classroom.jpg';
+import preKinderImage from '@/assets/pre-kinder.jpg';
 import kinderImage from '@/assets/kinder-hero.jpg';
 import primariaImage from '@/assets/primaria-hero.jpg';
 import logo from '@/assets/logo.png';
@@ -42,7 +43,7 @@ const features = [
 
 const programs = [
   {
-    image: kinderImage,
+    image: preKinderImage,
     // Título grande
     title: 'Pre-kínder 4 años',
     // Badge superior

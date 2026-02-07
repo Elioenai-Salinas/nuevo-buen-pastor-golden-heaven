@@ -21,6 +21,7 @@ import {
   Bot,
 } from 'lucide-react';
 
+import preKinderImage from '@/assets/pre-kinder.jpg';
 import kinderImage from '@/assets/kinder-hero.jpg';
 import primariaImage from '@/assets/primaria-hero.jpg';
 
@@ -31,7 +32,7 @@ const programs = [
     subtitle: '4 años',
     description:
       'Primera experiencia escolar donde el aprendizaje se da a través del juego, la exploración y el descubrimiento.',
-    image: kinderImage,
+    image: preKinderImage,
     color: 'bg-pastel-pink',
     features: [
       'Desarrollo de motricidad fina y gruesa',

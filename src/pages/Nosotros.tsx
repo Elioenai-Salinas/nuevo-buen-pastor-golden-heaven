@@ -5,15 +5,15 @@ import { WhatsAppButton } from '@/components/shared/WhatsAppButton';
 import { Section, SectionHeader } from '@/components/shared/Section';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { 
-  Heart, 
-  Target, 
+import {
+  Heart,
+  Target,
   Eye,
   Award,
   Users,
   Star,
   BookOpen,
-  Shield
+  Shield,
 } from 'lucide-react';
 
 import logo from '@/assets/logo.png';
@@ -23,52 +23,56 @@ const values = [
   {
     icon: Heart,
     title: 'Amor',
-    description: 'El amor es la base de nuestra enseñanza. Cada niño es tratado con cariño y respeto.',
+    description:
+      'El amor es la base de nuestra enseñanza. Cada niño es tratado con cariño y respeto.',
     color: 'bg-pastel-pink',
   },
   {
     icon: BookOpen,
     title: 'Excelencia',
-    description: 'Buscamos la excelencia en todo lo que hacemos, inspirando a nuestros estudiantes a dar lo mejor.',
+    description:
+      'Buscamos la excelencia en todo lo que hacemos, inspirando a nuestros estudiantes a dar lo mejor.',
     color: 'bg-pastel-blue',
   },
   {
     icon: Users,
     title: 'Comunidad',
-    description: 'Fomentamos un sentido de familia y pertenencia entre estudiantes, padres y docentes.',
+    description:
+      'Fomentamos un sentido de familia y pertenencia entre estudiantes, padres y docentes.',
     color: 'bg-pastel-green',
   },
   {
     icon: Shield,
     title: 'Integridad',
-    description: 'Enseñamos con el ejemplo, promoviendo la honestidad y la responsabilidad.',
+    description:
+      'Enseñamos con el ejemplo, promoviendo la honestidad y la responsabilidad.',
     color: 'bg-pastel-yellow',
   },
 ];
 
 const timeline = [
-  { year: '[AÑO]', event: 'Fundación del Centro Educativo El Buen Pastor Golden Heaven' },
-  { year: '[AÑO]', event: 'Apertura del programa de Primaria' },
-  { year: '[AÑO]', event: 'Ampliación de instalaciones' },
-  { year: '2024', event: 'Más de 500 familias confían en nosotros' },
+  { year: '2013', event: 'Fundación del centro educativo como un preescolar Golden Heaven' },
+  { year: '2015', event: 'Apertura del programa de primaria' },
+  { year: '2018', event: 'Ampliación de instalaciones' },
+  { year: '2024', event: 'Una gran comunidad tiene confianza en nosotros' },
 ];
 
 export default function Nosotros() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImage} 
-            alt="Nuestra escuela" 
+          <img
+            src={heroImage}
+            alt="Nuestra escuela"
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         </div>
-        
+
         <div className="container relative z-10">
           <motion.div
             className="max-w-3xl mx-auto text-center"
@@ -77,15 +81,17 @@ export default function Nosotros() {
             transition={{ duration: 0.6 }}
           >
             <img src={logo} alt="Logo" className="h-28 w-28 mx-auto mb-6" />
-            
+
             <h1 className="font-heading font-bold text-4xl lg:text-5xl text-foreground mb-6">
-              Centro Educativo El Buen Pastor <span className="text-golden">Golden Heaven</span>
+              Centro Educativo El Buen Pastor{' '}
+              <span className="text-golden">Golden Heaven</span>
             </h1>
-            
+
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Somos una institución educativa panameña comprometida con la formación integral 
-              de niños desde preescolar hasta primaria, combinando excelencia académica con 
-              valores cristianos en un ambiente de amor y seguridad.
+              Somos una institución educativa panameña comprometida con la
+              formación integral de niños desde preescolar hasta primaria,
+              combinando excelencia académica con valores cristianos en un
+              ambiente de amor y seguridad.
             </p>
           </motion.div>
         </div>
@@ -104,12 +110,15 @@ export default function Nosotros() {
               <div className="p-3 rounded-xl bg-primary">
                 <Target className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h2 className="font-heading font-bold text-2xl text-foreground">Nuestra Misión</h2>
+              <h2 className="font-heading font-bold text-2xl text-foreground">
+                Nuestra Misión
+              </h2>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Brindar una educación de calidad fundamentada en valores cristianos, 
-              desarrollando las capacidades intelectuales, emocionales y sociales de cada estudiante, 
-              preparándolos para enfrentar los retos del futuro con éxito y responsabilidad.
+              Brindar una educación de calidad fundamentada en valores
+              cristianos, desarrollando las capacidades intelectuales,
+              emocionales y sociales de cada estudiante, preparándolos para
+              enfrentar los retos del futuro con éxito y responsabilidad.
             </p>
           </motion.div>
 
@@ -123,12 +132,14 @@ export default function Nosotros() {
               <div className="p-3 rounded-xl bg-golden">
                 <Eye className="h-6 w-6 text-white" />
               </div>
-              <h2 className="font-heading font-bold text-2xl text-foreground">Nuestra Visión</h2>
+              <h2 className="font-heading font-bold text-2xl text-foreground">
+                Nuestra Visión
+              </h2>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Ser reconocidos como una institución educativa líder en Panamá, 
-              formando líderes íntegros con sólidas bases académicas y valores que 
-              contribuyan positivamente a la sociedad.
+              Ser reconocidos como una institución educativa líder en Panamá,
+              formando líderes íntegros con sólidas bases académicas y valores
+              que contribuyan positivamente a la sociedad.
             </p>
           </motion.div>
         </div>
@@ -153,11 +164,17 @@ export default function Nosotros() {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -4 }}
             >
-              <div className={`w-16 h-16 rounded-2xl ${value.color} flex items-center justify-center mx-auto mb-4`}>
+              <div
+                className={`w-16 h-16 rounded-2xl ${value.color} flex items-center justify-center mx-auto mb-4`}
+              >
                 <value.icon className="h-8 w-8 text-foreground/80" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-foreground mb-2">{value.title}</h3>
-              <p className="text-muted-foreground text-sm">{value.description}</p>
+              <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                {value.title}
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                {value.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -182,11 +199,13 @@ export default function Nosotros() {
 
           <div className="relative">
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary-foreground/20 -translate-x-1/2" />
-            
+
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
-                className={`relative flex items-center gap-6 mb-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                className={`relative flex items-center gap-6 mb-8 ${
+                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -194,8 +213,12 @@ export default function Nosotros() {
               >
                 <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
                   <div className="bg-primary-foreground/10 backdrop-blur rounded-xl p-4 inline-block">
-                    <p className="font-bold text-golden-light text-lg mb-1">{item.year}</p>
-                    <p className="text-primary-foreground/80 text-sm">{item.event}</p>
+                    <p className="font-bold text-golden-light text-lg mb-1">
+                      {item.year}
+                    </p>
+                    <p className="text-primary-foreground/80 text-sm">
+                      {item.event}
+                    </p>
                   </div>
                 </div>
                 <div className="w-4 h-4 rounded-full bg-golden border-4 border-primary z-10" />
@@ -208,10 +231,7 @@ export default function Nosotros() {
 
       {/* Why Choose Us */}
       <Section>
-        <SectionHeader
-          badge="¿Por qué elegirnos?"
-          title="Lo que nos hace diferentes"
-        />
+        <SectionHeader badge="¿Por qué elegirnos?" title="Lo que nos hace diferentes" />
 
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
