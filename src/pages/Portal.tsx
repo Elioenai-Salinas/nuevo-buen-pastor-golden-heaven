@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { loginAlumno } from '@/services/PortalAPI';
 import { 
   User, 
-  Lock, 
   ArrowLeft,
   GraduationCap,
   BookOpen,
@@ -43,15 +43,38 @@ const features = [
 
 export default function Portal() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulating login - this would connect to auth in a real implementation
-    setTimeout(() => {
+    setError('');
+
+    const form = e.currentTarget as HTMLFormElement;
+    const usernameInput = form.querySelector('#username') as HTMLInputElement;
+    const idAlumno = usernameInput?.value || '';
+
+    try {
+      if (!idAlumno.trim()) {
+        setError('Por favor ingresa el ID del alumno');
+        setIsLoading(false);
+        return;
+      }
+
+      const studentData = await loginAlumno(idAlumno);
+      
+      if (studentData) {
+        sessionStorage.setItem('studentData', JSON.stringify(studentData));
+        navigate('/dashboard');
+      } else {
+        setError('Alumno no encontrado');
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error en la conexión');
       setIsLoading(false);
-      alert('El Portal de Padres estará disponible próximamente. ¡Gracias por tu paciencia!');
-    }, 1500);
+    }
   };
 
   return (
@@ -127,41 +150,24 @@ export default function Portal() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-md p-3">
+                    <p className="text-sm text-red-800 font-medium">{error}</p>
+                  </div>
+                )}
+                
                 <div className="space-y-2">
-                  <Label htmlFor="username">Usuario o Correo</Label>
+                  <Label htmlFor="username">ID del Alumno</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
                       id="username" 
-                      placeholder="Tu usuario o correo"
+                      placeholder="Ej: EBP-0001"
                       className="pl-10"
                       required
+                      disabled={isLoading}
                     />
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="password">Contraseña</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      id="password" 
-                      type="password"
-                      placeholder="Tu contraseña"
-                      className="pl-10"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between text-sm">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded border-input" />
-                    <span className="text-muted-foreground">Recordarme</span>
-                  </label>
-                  <a href="#" className="text-primary hover:underline">
-                    ¿Olvidaste tu contraseña?
-                  </a>
                 </div>
 
                 <Button 
