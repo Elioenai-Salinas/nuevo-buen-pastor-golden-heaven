@@ -12,7 +12,7 @@
 // ===== CONFIGURACIÓN =====
 // Reemplaza estas URLs y tokens con los valores de tu proyecto
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbyCkJuQqiBEQZNd3fXXPHKpDhVDT2rj2pNK2M7KnTJsm2KMM-ovt1TevWEv8Hdrd6N3/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxdBvQB6Mj4ZcmIOAAmtylYbhFFQoOoOMcZ4rxVe7bzd6yEAZmQkPz0EYkbLUIvO5s/exec';
 // Obtén el SCRIPT_ID ejecutando v3PortalApiGetPublicUrl() en Apps Script
 
 const API_TOKEN = '52f5e694-0eb3-40ee-ba39-9ece990b0669';
