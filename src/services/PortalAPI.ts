@@ -72,7 +72,7 @@ export async function getAlumnoList(): Promise<AlumnoListItem[]> {
 export async function getAlumnoData(idAlumno: string): Promise<AlumnoData | null> {
   const url = new URL(API_URL);
   url.searchParams.set('action', 'getAlumnoData');
-  url.searchParams.set('id', idAlumno);
+  url.searchParams.set('idAlumno', idAlumno);
   url.searchParams.set('token', API_TOKEN);
 
   const response = await fetch(url.toString());
