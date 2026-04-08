@@ -162,7 +162,7 @@ export default function Portal() {
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
                       id="username" 
-                      placeholder="Ej: EBP-0001"
+                      placeholder=""
                       className="pl-10"
                       required
                       disabled={isLoading}
