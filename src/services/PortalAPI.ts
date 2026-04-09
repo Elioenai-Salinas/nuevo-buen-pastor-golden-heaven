@@ -12,7 +12,7 @@
 // ===== CONFIGURACIÓN =====
 // Reemplaza estas URLs y tokens con los valores de tu proyecto
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbxkeGkt1sCwPL1LWG1nQqYY5yufwjft30DUEVDQKG2P5UMi1GM8WO8z0pm-P69tax6T/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxPYOSCPFi6FKqsirYHzdDSuSu9u0iDY0EoErgClonm2J-WKYqw8PQMnWdtfxz_yTF1/exec';
 // Obtén el SCRIPT_ID ejecutando v3PortalApiGetPublicUrl() en Apps Script
 
 const API_TOKEN = '52f5e694-0eb3-40ee-ba39-9ece990b0669';
@@ -24,11 +24,16 @@ export interface AlumnoData {
   idAlumno: string;
   nombre: string;
   saldo: number;
+  tieneMora: 'SI' | 'NO';
+  ultimoPeriodoPendiente: string;
+  estadoExportacion: string;
   mora: {
     monto: number;
     estado: string;
   };
   responsable: string;
+  correoResponsable: string;
+  telefonoResponsable: string;
   ultimaActualizacion: string;
 }
 
