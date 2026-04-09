@@ -162,14 +162,13 @@ export default function Portal() {
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
                       id="credencial"
-                      placeholder="EBP-0001-482-193-027-654"
+                      placeholder=""
                       className="pl-10 font-mono tracking-wider"
                       required
                       disabled={isLoading}
                       autoComplete="off"
                     />
                   </div>
-                  <p className="text-xs text-muted-foreground">Ingresa la credencial completa que te entregó la administración</p>
                 </div>
 
                 <Button 
