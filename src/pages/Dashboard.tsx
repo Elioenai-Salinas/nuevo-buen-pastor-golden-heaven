@@ -18,37 +18,37 @@ import {
 import type { AlumnoData, DetalleMovimiento } from '@/services/PortalAPI';
 import logo from '@/assets/logo.png';
 
-// â”€â”€â”€ helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Helpers
 
 function formatCurrency(val?: number) {
   return `$${(val ?? 0).toFixed(2)}`;
 }
 
 function formatFecha(val?: string) {
-  if (!val) return 'â€”';
+  if (!val) return '—';
   const d = new Date(val);
   if (Number.isNaN(d.getTime())) return val;
   return d.toLocaleDateString('es-PA', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
 function formatPeriodo(val?: string) {
-  if (!val) return 'â€”';
+  if (!val) return '—';
   const d = new Date(val);
   if (Number.isNaN(d.getTime())) return val;
   return d.toLocaleDateString('es-PA', { month: 'long', year: 'numeric' });
 }
 
-// â”€â”€â”€ badge components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Badge components
 
 function EstadoBadge({ estado }: { estado: string }) {
   const e = String(estado || '').toUpperCase();
   if (e === 'PAGADO' || e === 'AL DIA' || e === 'AL_DIA')
-    return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-400/20 text-emerald-300"><CheckCircle className="h-3 w-3" />Al dÃ­a</span>;
+    return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-400/20 text-emerald-300"><CheckCircle className="h-3 w-3" />Al día</span>;
   if (e === 'PENDIENTE')
     return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-400/20 text-amber-300"><Clock className="h-3 w-3" />Pendiente</span>;
   if (e === 'VENCIDO' || e === 'MOROSO')
     return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-400/20 text-red-300"><AlertCircle className="h-3 w-3" />Vencido</span>;
-  return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-white/10 text-white/60">{estado || 'â€”'}</span>;
+  return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-white/10 text-white/60">{estado || '—'}</span>;
 }
 
 function TipoMovBadge({ tipo }: { tipo: string }) {
@@ -61,10 +61,10 @@ function TipoMovBadge({ tipo }: { tipo: string }) {
     return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-orange-400/20 text-orange-300">Mora</span>;
   if (t === 'AJUSTE')
     return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-400/20 text-blue-300">Ajuste</span>;
-  return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-white/10 text-white/60">{tipo || 'â€”'}</span>;
+  return <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-white/10 text-white/60">{tipo || '—'}</span>;
 }
 
-// â”€â”€â”€ summary card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Summary card
 
 type AccentColor = 'green' | 'red' | 'amber' | 'blue';
 
@@ -104,7 +104,7 @@ function SummaryCard({
   );
 }
 
-// â”€â”€â”€ mobile movement card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Mobile movement card
 
 function MovimientoCard({ mov }: { mov: DetalleMovimiento }) {
   return (
@@ -112,7 +112,7 @@ function MovimientoCard({ mov }: { mov: DetalleMovimiento }) {
       <div className="flex items-start justify-between mb-2">
         <div className="flex-1 mr-2">
           <p className="text-white font-medium text-sm leading-tight">{mov.concepto}</p>
-          <p className="text-white/50 text-xs mt-0.5">{formatFecha(mov.fechaMovimiento)} Â· {formatPeriodo(mov.periodo)}</p>
+          <p className="text-white/50 text-xs mt-0.5">{formatFecha(mov.fechaMovimiento)} · {formatPeriodo(mov.periodo)}</p>
         </div>
         <TipoMovBadge tipo={mov.tipoMovimiento} />
       </div>
@@ -139,7 +139,7 @@ function MovimientoCard({ mov }: { mov: DetalleMovimiento }) {
   );
 }
 
-// â”€â”€â”€ tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Tabs
 
 type TabId = 'estado-cuenta' | 'pagos' | 'documentos' | 'avisos';
 
@@ -150,7 +150,7 @@ const TABS: { id: TabId; label: string; shortLabel: string; icon: React.Componen
   { id: 'avisos',        label: 'Avisos',              shortLabel: 'Avisos',  icon: Bell },
 ];
 
-// â”€â”€â”€ main component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Main component
 
 export default function Dashboard() {
   const [studentData, setStudentData] = useState<AlumnoData | null>(null);
@@ -177,7 +177,7 @@ export default function Dashboard() {
     navigate('/portal');
   };
 
-  // â”€â”€ loading / no-data states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Loading / no-data states
 
   if (loading) {
     return (
@@ -194,7 +194,7 @@ export default function Dashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[hsl(217,71%,18%)] to-[hsl(200,60%,32%)]">
         <div className="text-center">
-          <p className="text-white/60 mb-4">SesiÃ³n no encontrada.</p>
+          <p className="text-white/60 mb-4">Sesión no encontrada.</p>
           <Button asChild variant="outline" className="border-white/20 text-white bg-white/10 hover:bg-white/20">
             <Link to="/portal">Ir al portal</Link>
           </Button>
@@ -203,7 +203,7 @@ export default function Dashboard() {
     );
   }
 
-  // â”€â”€ derived financial data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Derived financial data
 
   const resumen = studentData.resumenFinanciero;
   const detalle = studentData.detalleMovimientos ?? [];
@@ -216,22 +216,22 @@ export default function Dashboard() {
   const rawEstado = (resumen?.estadoMorosidad || resumen?.estadoCuenta || '').toUpperCase();
   const estadoLabel =
     rawEstado === 'AL DIA' || rawEstado === 'AL_DIA' || studentData.tieneMora === 'NO' && saldoFinal === 0
-      ? 'Al dÃ­a'
+      ? 'Al día'
       : rawEstado === 'MOROSO' || studentData.tieneMora === 'SI'
         ? 'Moroso'
         : rawEstado === 'PENDIENTE'
           ? 'Pendiente'
-          : saldoFinal > 0 ? 'Pendiente' : 'Al dÃ­a';
+          : saldoFinal > 0 ? 'Pendiente' : 'Al día';
 
   const estadoAccent: AccentColor =
-    estadoLabel === 'Al dÃ­a' ? 'green' : estadoLabel === 'Moroso' ? 'red' : 'amber';
+    estadoLabel === 'Al día' ? 'green' : estadoLabel === 'Moroso' ? 'red' : 'amber';
 
-  // â”€â”€ render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Render
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-[hsl(217,71%,16%)] via-[hsl(215,65%,23%)] to-[hsl(200,55%,30%)]">
 
-      {/* â”€â”€ Watermark â”€â”€ */}
+      {/* Watermark */}
       <div className="pointer-events-none fixed inset-0 flex items-center justify-center z-0 overflow-hidden">
         <img
           src={logo}
@@ -242,7 +242,7 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* â”€â”€ Header â”€â”€ */}
+      {/* Header */}
       <header className="relative z-10 px-4 sm:px-6 py-3 flex items-center justify-between border-b border-white/10 backdrop-blur-sm bg-white/5">
         <div className="flex items-center gap-3 sm:gap-4">
           <img
@@ -282,25 +282,25 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* â”€â”€ Student identity pill â”€â”€ */}
+      {/* Student identity pill */}
       <div className="relative z-10 px-4 sm:px-6 pt-4 pb-2">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 border border-white/15">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
           <span className="text-white/90 text-sm font-medium truncate max-w-[200px] sm:max-w-none">
             {studentData.nombre}
           </span>
-          <span className="text-white/40 text-xs hidden sm:inline">Â·</span>
+          <span className="text-white/40 text-xs hidden sm:inline">·</span>
           <span className="text-white/55 text-xs hidden sm:inline">{studentData.idAlumno}</span>
           {resumen?.grado && (
             <>
-              <span className="text-white/40 text-xs hidden sm:inline">Â·</span>
+              <span className="text-white/40 text-xs hidden sm:inline">·</span>
               <span className="text-white/55 text-xs hidden sm:inline">{resumen.grado}</span>
             </>
           )}
         </div>
       </div>
 
-      {/* â”€â”€ Tab navigation â”€â”€ */}
+      {/* Tab navigation */}
       <div className="relative z-10 px-4 sm:px-6 pb-3 overflow-x-auto">
         <div
           className="flex gap-1 bg-white/8 backdrop-blur-sm rounded-xl p-1 border border-white/12 w-fit"
@@ -328,12 +328,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* â”€â”€ Main content â”€â”€ */}
+      {/* Main content */}
       <main className="relative z-10 px-4 sm:px-6 pb-10 space-y-4">
 
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            TAB: Estado de Cuenta
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        {/* TAB: Estado de Cuenta */}
         {activeTab === 'estado-cuenta' && (
           <>
             {/* Summary cards */}
@@ -349,7 +347,7 @@ export default function Dashboard() {
                 label="Estado de Cuenta"
                 value={estadoLabel}
                 sub={mesesVencidos > 0 ? `${mesesVencidos} mes${mesesVencidos > 1 ? 'es' : ''} vencido${mesesVencidos > 1 ? 's' : ''}` : undefined}
-                icon={estadoLabel === 'Al dÃ­a' ? <CheckCircle className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
+                icon={estadoLabel === 'Al día' ? <CheckCircle className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
                 accent={estadoAccent}
               />
               <SummaryCard
@@ -374,12 +372,12 @@ export default function Dashboard() {
                   <p className="text-white/50 text-xs mt-0.5">
                     {detalle.length > 0
                       ? `${detalle.length} movimiento${detalle.length > 1 ? 's' : ''} registrado${detalle.length > 1 ? 's' : ''}`
-                      : 'Sin movimientos registrados aÃºn'}
+                      : 'Sin movimientos registrados aún'}
                   </p>
                 </div>
                 {resumen?.ultimaFechaPago && (
                   <p className="text-white/40 text-xs hidden sm:block">
-                    Ãšltimo pago: {formatFecha(resumen.ultimaFechaPago)}
+                    Último pago: {formatFecha(resumen.ultimaFechaPago)}
                   </p>
                 )}
               </div>
@@ -389,7 +387,7 @@ export default function Dashboard() {
                   <DollarSign className="h-10 w-10 text-white/15 mx-auto mb-3" />
                   <p className="text-white/40 text-sm">No hay movimientos en el estado de cuenta.</p>
                   <p className="text-white/25 text-xs mt-1">
-                    Los datos se actualizan automÃ¡ticamente al procesar cargos y pagos.
+                    Los datos se actualizan automáticamente al procesar cargos y pagos.
                   </p>
                 </div>
               ) : (
@@ -399,7 +397,7 @@ export default function Dashboard() {
                     <table className="w-full min-w-[700px]">
                       <thead>
                         <tr className="border-b border-white/8">
-                          {['Fecha', 'Tipo', 'Concepto', 'PerÃ­odo', 'Cargo', 'Abono', 'Saldo', 'Estado'].map((h) => (
+                          {['Fecha', 'Tipo', 'Concepto', 'Período', 'Cargo', 'Abono', 'Saldo', 'Estado'].map((h) => (
                             <th
                               key={h}
                               className={`px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wide ${
@@ -430,10 +428,10 @@ export default function Dashboard() {
                               {formatPeriodo(mov.periodo)}
                             </td>
                             <td className="px-4 py-3 text-sm text-right text-red-300 font-mono tabular-nums">
-                              {mov.cargo > 0 ? formatCurrency(mov.cargo) : <span className="text-white/20">â€”</span>}
+                              {mov.cargo > 0 ? formatCurrency(mov.cargo) : <span className="text-white/20">—</span>}
                             </td>
                             <td className="px-4 py-3 text-sm text-right text-emerald-300 font-mono tabular-nums">
-                              {mov.abono > 0 ? formatCurrency(mov.abono) : <span className="text-white/20">â€”</span>}
+                              {mov.abono > 0 ? formatCurrency(mov.abono) : <span className="text-white/20">—</span>}
                             </td>
                             <td className="px-4 py-3 text-sm text-right text-white font-mono font-semibold tabular-nums">
                               {formatCurrency(mov.saldoAcumulado)}
@@ -462,7 +460,7 @@ export default function Dashboard() {
               <div className="backdrop-blur-sm bg-white/6 border border-white/12 rounded-xl px-5 py-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { label: 'Saldo anterior', value: resumen.saldoAnterior },
-                  { label: 'Cargos del perÃ­odo', value: resumen.totalCargos },
+                  { label: 'Cargos del período', value: resumen.totalCargos },
                   { label: 'Pagos aplicados', value: resumen.totalPagos },
                   { label: 'Saldo final', value: resumen.saldoFinal },
                 ].map(({ label, value }) => (
@@ -476,14 +474,12 @@ export default function Dashboard() {
 
             {/* Footer note */}
             <p className="text-white/35 text-xs text-center pt-1">
-              Para aclaraciones sobre cobros, comunÃ­cate con administraciÃ³n indicando tu nÃºmero de alumno.
+              Para aclaraciones sobre cobros, comunícate con administración indicando tu número de alumno.
             </p>
           </>
         )}
 
-        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-            TAB: PrÃ³ximamente (Pagos / Documentos / Avisos)
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+        {/* TAB: Próximamente (Pagos / Documentos / Avisos) */}
         {activeTab !== 'estado-cuenta' && (
           <div className="backdrop-blur-sm bg-white/6 border border-white/12 rounded-2xl p-10 text-center shadow-xl">
             <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4">
@@ -491,8 +487,8 @@ export default function Dashboard() {
               {activeTab === 'documentos' && <FileText className="h-7 w-7 text-white/50" />}
               {activeTab === 'avisos'     && <Bell     className="h-7 w-7 text-white/50" />}
             </div>
-            <h3 className="text-white font-heading font-semibold text-lg mb-1">PrÃ³ximamente</h3>
-            <p className="text-white/45 text-sm">Esta secciÃ³n estarÃ¡ disponible en una prÃ³xima versiÃ³n del portal.</p>
+            <h3 className="text-white font-heading font-semibold text-lg mb-1">Próximamente</h3>
+            <p className="text-white/45 text-sm">Esta sección estará disponible en una próxima versión del portal.</p>
           </div>
         )}
 
