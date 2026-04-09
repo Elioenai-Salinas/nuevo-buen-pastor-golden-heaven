@@ -52,23 +52,23 @@ export default function Portal() {
     setError('');
 
     const form = e.currentTarget as HTMLFormElement;
-    const usernameInput = form.querySelector('#username') as HTMLInputElement;
-    const idAlumno = usernameInput?.value || '';
+    const credInput = form.querySelector('#credencial') as HTMLInputElement;
+    const credencial = credInput?.value?.trim() || '';
 
     try {
-      if (!idAlumno.trim()) {
-        setError('Por favor ingresa el ID del alumno');
+      if (!credencial) {
+        setError('Por favor ingresa tu credencial de acceso');
         setIsLoading(false);
         return;
       }
 
-      const studentData = await loginAlumno(idAlumno);
-      
+      const studentData = await loginAlumno(credencial);
+
       if (studentData) {
         sessionStorage.setItem('studentData', JSON.stringify(studentData));
         navigate('/dashboard');
       } else {
-        setError('Alumno no encontrado');
+        setError('Credencial incorrecta');
         setIsLoading(false);
       }
     } catch (err) {
@@ -157,17 +157,19 @@ export default function Portal() {
                 )}
                 
                 <div className="space-y-2">
-                  <Label htmlFor="username">ID del Alumno</Label>
+                  <Label htmlFor="credencial">Credencial de acceso</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
-                      id="username" 
-                      placeholder=""
-                      className="pl-10"
+                      id="credencial"
+                      placeholder="EBP-0001-482-193-027-654"
+                      className="pl-10 font-mono tracking-wider"
                       required
                       disabled={isLoading}
+                      autoComplete="off"
                     />
                   </div>
+                  <p className="text-xs text-muted-foreground">Ingresa la credencial completa que te entregó la administración</p>
                 </div>
 
                 <Button 

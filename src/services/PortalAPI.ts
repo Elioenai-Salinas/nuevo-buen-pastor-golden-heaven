@@ -98,17 +98,31 @@ export async function getSystemStatus() {
 }
 
 /**
- * Autentica un user por ID de alumno
- * (En una implementación real, validarías contra una base de datos)
+ * Autentica usando la credencial completa: EBP-XXXX-NNN-NNN-NNN-NNN
+ * El sistema separa el ID (EBP-XXXX) de la contraseña (NNN-NNN-NNN-NNN).
  */
-export async function loginAlumno(idAlumno: string, password?: string): Promise<AlumnoData | null> {
-  // En un flujo real, validarías password contra una fuente segura.
-  // Por ahora, devolvemos los datos si el ID existe.
+export async function loginAlumno(credencial: string): Promise<AlumnoData | null> {
+  const cred = credencial.trim();
+  // Formato esperado: EBP-0001-482-193-027-654
+  // ID = primeras 8 chars (EBP-XXXX), password = el resto tras el 9º char
+  const match = cred.match(/^(EBP-\d{4})-(.+)$/);
+  if (!match) {
+    throw new Error('Formato incorrecto. Use: EBP-XXXX-NNN-NNN-NNN-NNN');
+  }
+  const idAlumno = match[1];
+  const password = match[2];
 
-  const alumno = await getAlumnoData(idAlumno);
-  if (!alumno) {
-    throw new Error('Alumno no encontrado');
+  const url = new URL(API_URL);
+  url.searchParams.set('action', 'loginAlumno');
+  url.searchParams.set('idAlumno', idAlumno);
+  url.searchParams.set('password', password);
+
+  const response = await fetch(url.toString());
+  const data: ApiResponse<AlumnoData> = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.error || 'Credencial incorrecta');
   }
 
-  return alumno;
+  return data.data || null;
 }
