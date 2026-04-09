@@ -12,13 +12,45 @@
 // ===== CONFIGURACIÓN =====
 // Reemplaza estas URLs y tokens con los valores de tu proyecto
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbxPYOSCPFi6FKqsirYHzdDSuSu9u0iDY0EoErgClonm2J-WKYqw8PQMnWdtfxz_yTF1/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzw_9jerPKChws8W2d9t6h50X2jmuFfIqz3P91b80OlNfDFENqcCRXxgvhM09iBBdO3/exec';
 // Obtén el SCRIPT_ID ejecutando v3PortalApiGetPublicUrl() en Apps Script
 
 const API_TOKEN = '52f5e694-0eb3-40ee-ba39-9ece990b0669';
 // Obtén el token ejecutando v3PortalApiSetupToken() en Apps Script
 
 // ===== INTERFACES =====
+
+export interface DetalleMovimiento {
+  detalleId: string;
+  fechaMovimiento: string;
+  tipoMovimiento: string;
+  concepto: string;
+  periodo: string;
+  descripcion: string;
+  cargo: number;
+  abono: number;
+  ajuste: number;
+  saldoAcumulado: number;
+  estado: string;
+}
+
+export interface ResumenFinanciero {
+  resumenId: string;
+  fechaCorte: string;
+  grado: string;
+  saldoAnterior: number;
+  totalCargos: number;
+  totalPagos: number;
+  totalAjustes: number;
+  saldoFinal: number;
+  tieneMora: string;
+  cargosVencidosImpagos: number;
+  cargosConRecargoImpagos: number;
+  mesesVencidosImpagos: number;
+  estadoMorosidad: string;
+  ultimaFechaPago: string;
+  estadoCuenta: string;
+}
 
 export interface AlumnoData {
   idAlumno: string;
@@ -35,6 +67,8 @@ export interface AlumnoData {
   correoResponsable: string;
   telefonoResponsable: string;
   ultimaActualizacion: string;
+  resumenFinanciero: ResumenFinanciero | null;
+  detalleMovimientos: DetalleMovimiento[];
 }
 
 export interface AlumnoListItem {
