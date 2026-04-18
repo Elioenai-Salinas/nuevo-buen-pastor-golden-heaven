@@ -8,7 +8,7 @@ export default function TerminosUso() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
 
-      <main className="container py-10 lg:py-14">
+      <main className="container pt-28 pb-10 lg:pt-32 lg:pb-14">
         <article className="max-w-3xl mx-auto space-y-6">
           <header className="space-y-2">
             <h1 className="font-heading text-3xl lg:text-4xl font-bold">Terminos de Uso</h1>
