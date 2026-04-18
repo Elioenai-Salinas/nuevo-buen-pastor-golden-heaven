@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
 import TerminosUso from "./pages/TerminosUso";
 import NotFound from "./pages/NotFound";
+import { RouteScrollHandler } from "./components/layout/RouteScrollHandler";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RouteScrollHandler />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/admisiones" element={<Admisiones />} />

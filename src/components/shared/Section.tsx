@@ -8,8 +8,10 @@ interface SectionProps {
 }
 
 export function Section({ children, className = '', id }: SectionProps) {
+  const scrollOffsetClass = id ? 'scroll-mt-24 lg:scroll-mt-28' : '';
+
   return (
-    <section id={id} className={`py-16 lg:py-24 ${className}`}>
+    <section id={id} className={`${scrollOffsetClass} py-16 lg:py-24 ${className}`}>
       <div className="container">
         {children}
       </div>
